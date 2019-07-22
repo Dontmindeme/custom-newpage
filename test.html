@@ -10,28 +10,27 @@
 </head>
 
 <body>
-  <div id='app' class='flx-wrapper'>
+  <div class='flx-wrapper' id='app'>
     <div class="main-wrapper flx-wrapper flx-column flx-start">
-      <div>
+      <div v-if='show === 1'>
         <a v-for='i in yt' :href='i.url' class='list-item'>
-          {{ i.txt }}
+        {{ i.txt }}
+      </a>
+      </div>
+      <div v-else-if='show === 2'>TASKLIST!</div>
+      <div class='alx-bottom flx flx-even'>
+        <a class="back list-item m-right" :onclick='back'>
+            <i class="fas fa-caret-left"></i>
+        </a>
+        <a class="foward list-item m-left">
+            <i class="fas fa-caret-right" :onclick='foward'></i>
         </a>
       </div>
-      <div class="list-spacer"></div>
-      <div class='tasklist'>
-        <a class='list-item' @click="removeTask" v-for='i in tasks'>
-          {{ i }}
-        </a>
-        <a class='list-item' contenteditable @dblclick='addTask'>
-          ✏️ My New Task
-        </a>
-      </div>
-      <div class='alx-bottom flx flx-even'></div>
     </div>
     <div class="main-wrapper flx-bigger flx-even flx-column flx-wrapper">
       <div></div>
       <div>
-        <div class="main-search-bar" contenteditable @keyup='gSearch'>
+        <div class="main-search-bar" contenteditable>
           <span>{{ date }}</span>
           <span class="color-red">=></span>
           <span>{{ time }}</span>
@@ -53,7 +52,5 @@
   </div>
 </body>
 <!-- Use Webpack To Merge Into 1 File -->
-<script src='options.js'></script>
 <script src='app.pkg.js'></script>
-
 </html>
